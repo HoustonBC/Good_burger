@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Name: GoodBurger?
 
-Things you may want to cover:
+Description: A website that reviews different restaurants that specialize in burgers.
 
-* Ruby version
+Authors: Adam Dolaher, Brendan Shea, Houston Charles, Travis Nelson
 
-* System dependencies
+Heroku link: TBD
 
-* Configuration
+Features: Users can create restaurants as well as reviews for a given restaurant.  Users can additionally vote up and down the restaurants that they prefer and dislike, respectively.
 
-* Database creation
+Technologies: React, Rails, Foundation, FontAwesome, Heroku, Devise
 
-* Database initialization
+Badges: TBD
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
