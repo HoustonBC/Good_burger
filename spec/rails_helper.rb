@@ -8,6 +8,8 @@ require 'rspec/rails'
 require 'shoulda-matchers'
 require File.join(File.dirname(__FILE__), 'support/valid_attribute')
 require 'capybara/rspec'
+require 'coveralls'
+Coveralls.wear!('rails')
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
