@@ -1,1 +1,2 @@
-require 'valid_attribute/rspec'
+require 'valid_attribute'
+require 'valid_attribute/matcher'
