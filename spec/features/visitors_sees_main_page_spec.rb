@@ -30,4 +30,3 @@ feature "visitors sees a grid of restaurants" do
     expect(page).to have_content r1.picture
   end
 end
-end
