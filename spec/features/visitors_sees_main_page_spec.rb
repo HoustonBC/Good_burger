@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "visitors sees a grid of restaurants" do
-  scenario "sees a grid of restaurants and link to add a new restaurant" do
+  xscenario "sees a grid of restaurants and link to add a new restaurant" do
     r1 = Restaurant.create(name: "a", address: "500 summer street", city: "Boston", state: "MA", zip: "86753", picture: "this.img")
     r2 = Restaurant.create(name: "b", address: "500 summer street", city: "Boston", state: "MA", zip: "86753", picture: "this.img")
 
@@ -14,7 +14,7 @@ feature "visitors sees a grid of restaurants" do
 
     expect(page).to have_content "Add A New Restaurant"
   end
-  scenario "clicks link and is taken to show page for given restaurant" do
+  xscenario "clicks link and is taken to show page for given restaurant" do
     r1 = Restaurant.create(name: "a", address: "500 summer street", city: "Boston", state: "MA", zip: "86753", picture: "this.img")
 
     visit root_path
