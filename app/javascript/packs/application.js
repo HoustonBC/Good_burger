@@ -7,18 +7,18 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
+import App from '../react/containers/App'
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Hello name="React" />,
-    document.body.appendChild(document.createElement('div')),
-  )
+  let reactElement = document.getElementById('app')
+
+  if (reactElement) {
+    ReactDOM.render(
+      <App />,
+      reactElement
+    )
+  }
 })

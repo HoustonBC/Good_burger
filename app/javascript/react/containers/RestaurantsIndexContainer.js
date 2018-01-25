@@ -12,7 +12,7 @@ class RestaurantsIndexContainer extends Component {
   }
 
   componentDidMount() {
-  fetch('http://localhost:3000/api/restaurant')
+  fetch('/api/restaurant')
     .then(response => response.json())
     .then(body => {
       let jsonRestaurants = body
