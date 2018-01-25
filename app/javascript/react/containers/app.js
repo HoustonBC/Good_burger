@@ -1,10 +1,11 @@
 import React from 'react';
+import RestaurantsIndexContainer from './RestaurantsIndexContainer.js';
 
 const App = (props) => {
   return (
-    <div>
-       Hello React
-    </div>
+    <RestaurantsIndexContainer
+      data={props}
+    />
   );
 }
 
