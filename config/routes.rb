@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :restaurants, only: [:index, :show, :create]
   end
+
+  resources :restaurants
 end
