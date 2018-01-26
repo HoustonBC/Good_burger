@@ -8,8 +8,9 @@ class RestaurantsController < ApplicationController
 
   def create
     # @user = current_user
-    @restaurant = Restaurant.new(name: restaurant_params[:name], picture: restaurant_params[:picture], address: restaurant_params[:address], city: restaurant_params[:city], state: restaurant_params[:state], zip: restaurant_params[:zip], description: restaurant_params[:description], user: current_user)
-    if @restaurant.save!
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user = current_user
+    if @restaurant.save
       redirect_to restaurant_path(@restaurant.id)
       flash[:notice] = 'Restaurant added successfully'
     else
