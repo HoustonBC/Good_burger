@@ -1,0 +1,33 @@
+<h1>Review for <%= @restaurant.name %></h1>
+<%= form_for [@restaurant, @review] do |f| %>
+
+<div class="field">
+  <%= f.label :title %>
+  <%= f.text_area :title %>
+</div>
+
+<div class="field">
+  <%= f.label :body, "Description" %>
+  <%= f.text_area :body %>
+</div>
+
+<div class="field">
+  <%= f.label :rating, "Rating" %>
+  <%= f.text_area :rating %>
+</div>
+
+<div class="field">
+  <%= f.label :vote, "Vote" %>
+  <%= f.text_area :vote %>
+</div>
+
+<div class="field">
+  <%= f.label :price, "Price" %>
+  <%= f.text_area :price %>
+</div>
+
+<div class="actions">
+  <%= f.submit "Add Review" %>
+</div>
+
+<% end %>
