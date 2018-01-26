@@ -1,5 +1,4 @@
 class RestaurantsController < ApplicationController
-  #before_action :authorize_user, except: [:index, :show]
 
   def new
     @user = current_user
@@ -8,9 +7,9 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-
-    if @restaurant.save
+    # @user = current_user
+    @restaurant = Restaurant.new(name: restaurant_params[:name], picture: restaurant_params[:picture], address: restaurant_params[:address], city: restaurant_params[:city], state: restaurant_params[:state], zip: restaurant_params[:zip], description: restaurant_params[:description], user: current_user)
+    if @restaurant.save!
       redirect_to restaurant_path(@restaurant.id)
       flash[:notice] = 'Restaurant added successfully'
     else
@@ -29,11 +28,5 @@ class RestaurantsController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :encrypted_password)
   end
-
-  # def authorize_user
-  #   if !user_signed_in? || !current_user.admin?
-  #     raise ActionController::RoutingError.new("Not Found")
-  #   end
-  # end
 
 end

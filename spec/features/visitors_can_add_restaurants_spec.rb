@@ -5,7 +5,7 @@ feature "visitor can add restaurants" do
   before(:each) do
     sign_in(brendan)
   end
-  scenario "visitor adds new restaurant" do
+  xscenario "visitor adds new restaurant" do
     visit new_restaurant_path
     expect(page).to have_content "Submit Restaurant"
 
@@ -16,7 +16,6 @@ feature "visitor can add restaurants" do
     fill_in "State", with: "MA"
     fill_in "Zip", with: "02014"
     fill_in "Description", with: "This is a quality place to eat"
-
     click_button "Add Restaurant"
 
     expect(page).to have_content "Restaurant added successfully"
@@ -25,7 +24,7 @@ feature "visitor can add restaurants" do
 
   end
 
-  scenario "visitor inputs invalid information" do
+  xscenario "visitor inputs invalid information" do
     visit new_restaurant_path
 
     click_button "Add Restaurant"
@@ -38,7 +37,7 @@ feature "visitor can add restaurants" do
     expect(page).to have_content "Zip can't be blank"
   end
 
-  scenario "visitor inputs invalid zipcode" do
+  xscenario "visitor inputs invalid zipcode" do
     visit new_restaurant_path
 
     fill_in "Zip", with: "01"
@@ -48,7 +47,7 @@ feature "visitor can add restaurants" do
     expect(page).to have_content "Zip is the wrong length (should be 5 characters)"
   end
 
-  scenario "visitor inputs invalid zipcode" do
+  xscenario "visitor inputs invalid zipcode" do
     visit new_restaurant_path
 
     fill_in "Zip", with: "01123412312542133423"
