@@ -9,4 +9,4 @@ const App = (props) => {
   );
 }
 
-export default app;
+export default App;
