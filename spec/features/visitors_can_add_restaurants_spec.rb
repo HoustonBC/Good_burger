@@ -5,7 +5,7 @@ feature "visitor can add restaurants" do
   before(:each) do
     sign_in(brendan)
   end
-  xscenario "visitor adds new restaurant" do
+  scenario "visitor adds new restaurant" do
     visit new_restaurant_path
     expect(page).to have_content "Submit Restaurant"
 
