@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RestaurantTile = (props) => {
-  let restaurantLink = "restaurants/" + props.id
+  let restaurantLink = "/restaurants/" + props.id
   return(
       <a href={restaurantLink}>
         <div className="restaurant-tile">
@@ -13,7 +13,7 @@ const RestaurantTile = (props) => {
           <p> {props.body} </p>
         </div>
       </a>
-      
+
   )
 }
 export default RestaurantTile;
