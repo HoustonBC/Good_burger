@@ -1,0 +1,10 @@
+<button> <%= link_to "Back", restaurants_path  %> </button>
+<h1> <%= @restaurant.name %> </h1>
+<div> <img src=<%= @restaurant.picture %> alt=<%= @restaurant.name %>>  </div>
+<div>
+  <span> <%= @restaurant.address %> </span>
+  <span> <%= @restaurant.city %></span>
+  <span> <%= @restaurant.state %></span>
+  <span> <%= @restaurant.zip %></span>
+</div>
+  <p> <%= @restaurant.description %></p>
