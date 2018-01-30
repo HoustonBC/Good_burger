@@ -51,6 +51,7 @@ class RestaurantsIndexContainer extends Component {
     return(
       <div className="row">
         <div className="small-8 small-centered columns">
+          <a href="/restaurants/new"> Add New Restaurant </a>
           <h1>{restaurant}</h1>
         </div>
       </div>
