@@ -15,5 +15,4 @@ const RestaurantTile = (props) => {
     </a>
   )
 }
-
 export default RestaurantTile;
