@@ -8,6 +8,7 @@
   <span> <%= @restaurant.zip %></span>
 </div>
   <p> <%= @restaurant.description %></p>
+<button> <%= link_to "Add Review", new_restaurant_review_path(@restaurant) %> </button>
 
 <h2> Reviews for <%= @restaurant.name %> </h2>
 <ul>
