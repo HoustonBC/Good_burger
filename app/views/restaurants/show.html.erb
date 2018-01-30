@@ -8,3 +8,4 @@
   <span> <%= @restaurant.zip %></span>
 </div>
   <p> <%= @restaurant.description %></p>
+<%= link_to("Add Review", new_restaurant_review_path(@restaurant.id)) %>

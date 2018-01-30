@@ -8,20 +8,20 @@ feature "visitor adds reviews for restaurants" do
   end
   scenario "successfully adds a review" do
     r1 = Restaurant.create!(name: "macdonalds", address: "500 summer street",
-    city: "Boston", state: "MA", zip: "86753", picture: "this.img", user: u1)
+    city: "Boston", state: "MA", zip: "86753", picture: "this.img", user: brendan)
     visit restaurant_path(r1)
 
+    save_and_open_page
     click_link "Add Review"
 
     expect(page).to have_content "Review for macdonalds"
 
     fill_in "Title", with: "I hate this place"
     fill_in "Description", with: "man do i hate this place"
-    fill_in "Rating" with: "1"
-    fill_in "Vote" with: "0"
+    fill_in "Rating", with: "1"
 
     click_button "Add Review"
-
+    save_and_open_page
     expect(page).to have_content "Review added successfully"
     expect(page).to have_content r1.name
     expect(page).to have_content 1
@@ -30,7 +30,7 @@ feature "visitor adds reviews for restaurants" do
 
   scenario "adds a review for a restaurant unsuccessfully" do
     r1 = Restaurant.create!(name: "macdonalds", address: "500 summer street",
-    city: "Boston", state: "MA", zip: "86753", picture: "this.img", user: :brendan)
+    city: "Boston", state: "MA", zip: "86753", picture: "this.img", user: brendan)
     visit restaurant_path(r1)
 
     click_link "Add Review"
@@ -42,6 +42,5 @@ feature "visitor adds reviews for restaurants" do
     expect(page).to have_content "Description can't be blank"
     expect(page).to have_content "Rating can't be blank"
     expect(page).to have_content "Title can't be blank"
-    expect(page).to have_content "Vote can't be blank"
   end
 end
