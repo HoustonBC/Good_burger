@@ -13,9 +13,10 @@
 <h2> Reviews for <%= @restaurant.name %> </h2>
 <ul>
   <% @reviews.each do |review| %>
-    <li><h3> <%= @review.title  %> </h3>
-    <span><%= @review.rating %></span>
-    <span><%= @review.vote_score %></span>
-    <span><%= @review.price %></span>
-    <p> <%= @review.body %> </p></li>
+    <li><h3> <%= review.title  %> </h3>
+    <span><%= review.rating %></span>
+    <span><%= review.vote_score %></span>
+    <span><%= review.price %></span>
+    <p> <%= review.body %> </p></li>
   <% end %>
+</ul>

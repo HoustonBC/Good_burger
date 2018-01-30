@@ -11,7 +11,7 @@ feature "visitor adds reviews for restaurants" do
     city: "Boston", state: "MA", zip: "86753", picture: "this.img", user: brendan)
     visit restaurant_path(r1)
 
-    save_and_open_page
+
     click_link "Add Review"
 
     expect(page).to have_content "Review for macdonalds"
@@ -19,9 +19,10 @@ feature "visitor adds reviews for restaurants" do
     fill_in "Title", with: "I hate this place"
     fill_in "Description", with: "man do i hate this place"
     fill_in "Rating", with: "1"
+    fill_in "Price", with: "2"
 
     click_button "Add Review"
-    save_and_open_page
+
     expect(page).to have_content "Review added successfully"
     expect(page).to have_content r1.name
     expect(page).to have_content 1
@@ -39,7 +40,6 @@ feature "visitor adds reviews for restaurants" do
 
     click_button "Add Review"
 
-    expect(page).to have_content "Description can't be blank"
     expect(page).to have_content "Rating can't be blank"
     expect(page).to have_content "Title can't be blank"
   end

@@ -9,12 +9,12 @@ class ReviewsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
 
     @review = Review.new(review_params)
-    @review.user = current_user.id
+    @review.user_id = current_user.id
 
     @review.restaurant = @restaurant
     if @review.save
       redirect_to restaurant_path(@restaurant.id)
-      flash[:notice] = "Review Successfully Added"
+      flash[:notice] = "Review added successfully"
     else
 
       @reviews = @restaurant.reviews
