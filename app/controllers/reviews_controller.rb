@@ -1,13 +1,14 @@
 class ReviewsController < ApplicationController
 
   def new
-    @restaurants = Restaurant.find(params[:restaurant_id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
   end
 
   def create
-    @restaurants = Restaurant.find(params[:restaurant_id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
+    @review.restaurant = @restaurant
     if @review.save
       redirect_to restaurant_path(@restaurant.id)
       flash[:notice] = "Review Successfully Added"
