@@ -11,11 +11,27 @@
 <button> <%= link_to "Add Review", new_restaurant_review_path(@restaurant) %> </button>
 
 <h2> Reviews for <%= @restaurant.name %> </h2>
+
+<% if current_user != nil %>
+  <% if current_user.admin? %>
+    <p>user is admin</p>
+  <% end %>
+<% end %>
+
 <ul>
   <% @reviews.each do |review| %>
-    <li><h3> <%= @review.title  %> </h3>
-    <span><%= @review.rating %></span>
-    <span><%= @review.vote_score %></span>
-    <span><%= @review.price %></span>
-    <p> <%= @review.body %> </p></li>
+  <% if current_user != nil %>
+    <% if current_user.admin? %>
+      <% @review = review  %>
+      <p>admin thing</p>
+      <button> <%= link_to "Edit Review", edit_restaurant_review_path(@review)  %> </button>
+      <button> <%= link_to "Delete Review", restaurant_review_path(@restaurant, @review), method: :delete, data: {confirm: 'Are your sure?'} %> </button>
+      <% end %>
+    <% end %>
+    <li><h3> <%= review.title  %> </h3>
+    <span><%= review.rating %></span>
+    <span><%= review.vote_score %></span>
+    <span><%= review.price %></span>
+    <p> <%= review.body %> </p></li>
   <% end %>
+</ul>
