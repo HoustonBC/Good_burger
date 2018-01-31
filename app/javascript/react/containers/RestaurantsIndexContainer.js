@@ -6,8 +6,15 @@ class RestaurantsIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurant: []
+      restaurant: [],
+      searchText: '',
+      searchResults: []
     }
+    this.searchTextChange = this.searchTextChange.bind(this)
+  }
+
+  searchTextChange(event) {
+    this.setState({searchText: event.target.value});
   }
 
   componentDidMount() {
@@ -19,16 +26,6 @@ class RestaurantsIndexContainer extends Component {
     })
   }
 
-  // addNewRestaurant(formPayload) {
-  //   fetch('/api/restaurant', {
-  //     method: 'POST',
-  //     body: JSON.stringify(formPayload)
-  //   })
-  //   .then(response => response.json())
-  //   .then(responseData => {
-  //     this.setState({ restaurant: [...this.state.restaurant, responseData] })
-  //   })
-  // }
 
 
   render() {
@@ -48,10 +45,26 @@ class RestaurantsIndexContainer extends Component {
       )
     })
 
+    let searchBar = {
+      return(
+          <form>
+            <label> Search Restaurants:
+              <input
+                name="searchText"
+                type="text"
+                value={this.state.searchText}
+                onChange={this.searchTextChange}
+              />
+            </label>
+          </form>
+      )
+    }
+
     return(
       <div className="row">
         <div className="small-8 small-centered columns">
           <a href="/restaurants/new"> Add New Restaurant </a>
+          <div>{searchBar}</div>
           <h1>{restaurant}</h1>
         </div>
       </div>
