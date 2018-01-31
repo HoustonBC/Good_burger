@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
-  before_action :authorize_user, except: [:index, :show, :new, :create]
+  before_action :authorize_user, except: [:index, :show]
+  
   def index
   end
 
