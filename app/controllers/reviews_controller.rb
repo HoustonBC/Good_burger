@@ -1,14 +1,16 @@
 class ReviewsController < ApplicationController
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
-    @reviews = Review.where(restaurant_id: @restaurant.id)
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    #@reviews = Review.where(restaurant_id: @restaurant.id)
     @review = Review.find(params[:id])
     @review.destroy
-    render "/restaurants/show"
+    redirect_to restaurant_path(params[:restaurant_id])
   end
 
-
+  def show
+    @review = Review.find(params[:id])
+  end
 
   private
 
@@ -17,6 +19,7 @@ class ReviewsController < ApplicationController
   end
 
   def restaurant_params
-    params.permit(:id)
+    params.require(:restaurants).permit(:id)
   end
+
 end

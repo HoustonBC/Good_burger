@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :authorize_user, except: [:index, :show]
-  
+
   def index
   end
 
@@ -31,6 +31,13 @@ class RestaurantsController < ApplicationController
     end
 
   end
+
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy
+    redirect_to root_path
+  end
+
   protected
 
   def restaurant_params
