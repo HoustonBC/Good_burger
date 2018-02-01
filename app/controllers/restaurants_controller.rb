@@ -32,6 +32,20 @@ class RestaurantsController < ApplicationController
 
   end
 
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def update
+    @restaurant = Restaurant.find(params[:id])
+
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
@@ -50,7 +64,7 @@ class RestaurantsController < ApplicationController
   end
 
   def authorize_user
-    if !user_signed_in? || !current_user.admin?
+    if !user_signed_in?
       raise ActionController::RoutingError.new("Not Found")
     end
   end

@@ -1,4 +1,4 @@
-<button> <%= link_to "Back", restaurants_path  %> </button>
+<%= link_to "Back", restaurants_path, class: 'button'  %>
 <h1> <%= @restaurant.name %> </h1>
 <div> <img src=<%= @restaurant.picture %> alt=<%= @restaurant.name %>>  </div>
 
@@ -11,14 +11,15 @@
 
 <% if current_user != nil %>
   <% if current_user.admin? %>
-    <button> <%= link_to "Delete Restaurant", restaurant_path(@restaurant.id), method: :delete, data: {confirm: 'Are your sure?'} %> </button>
+    <%= link_to "Delete Restaurant", restaurant_path(@restaurant.id), class: 'button', method: :delete, data: {confirm: 'Are your sure?'} %>
+    <%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant.id), class: 'button' %>
   <% end %>
 <% end %>
 
 <p> <%= @restaurant.description %></p>
 
 <% if user_signed_in? %>
-  <button> <%= link_to "Add Review", new_restaurant_review_path(@restaurant) %> </button>
+  <%= link_to "Add Review", new_restaurant_review_path(@restaurant), class: 'button' %>
 <% end %>
 
 <h2> Reviews for <%= @restaurant.name %> </h2>
@@ -32,17 +33,18 @@
 <ul>
   <% @reviews.each do |review| %>
   <% if current_user != nil %>
-    <% if current_user.admin? %>
-      <% @review = review  %>
-      <p>admin buttons</p>
-      <button> <%= link_to "Edit Review", edit_restaurant_review_path(@review)  %> </button>
-      <button> <%= link_to "Delete Review", restaurant_review_path(@restaurant, review), method: :delete, data: {confirm: 'Are your sure?'} %> </button>
-      <% end %>
-    <% end %>
+    
     <li><h3> <%= review.title  %> </h3>
     <span><%= review.rating %></span>
     <span><%= review.vote_score %></span>
     <span><%= review.price %></span>
     <p> <%= review.body %> </p></li>
+    <% if current_user.admin? %>
+
+      <p>Admin Buttons</p>
+      <%= link_to "Edit Review", edit_restaurant_review_path(@restaurant, review), class: 'button'  %>
+      <%= link_to "Delete Review", restaurant_review_path(@restaurant, review), class: 'button', method: :delete, data: {confirm: 'Are your sure?'} %>
+      <% end %>
+    <% end %>
   <% end %>
 </ul>
