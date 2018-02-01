@@ -24,3 +24,23 @@ feature "visitor adds rating and price" do
     expect(page).to have_content r1.name
     expect(page).to have_content "Average Rating: 3"
     expect(page).to have_content "Average Price: 3"
+  end
+
+  scenario "visitor inputs invalid rating" do
+    visit restaurant_path(r1)
+
+    fill_in "Rating", with: "A"
+
+    click_button "Add Review"
+
+    expect(page).to have_content "Rating is not a number"
+  end
+  scenario "visitor inputs invalid price" do
+    visit restaurant_path(r1)
+
+    fill_in "Price", with: "A"
+
+    click_button "Add Review"
+
+    expect(page).to have_content "Price is not a number"
+end
