@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "visitor adds reviews for restaurants" do
+feature "user adds reviews for restaurants" do
   #helper file needed
   let(:brendan) { FactoryBot.create(:user) }
   before(:each) do

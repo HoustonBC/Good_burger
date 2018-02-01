@@ -1,0 +1,4 @@
+<p>user show page</p>
+<p>Email: <%= @user.email %></p>
+<p>Type: <%= @user.role %>
+<button> <%= link_to "Delete User", users_path, method: :delete, data: {confirm: 'Are your sure?'} %> </button>
