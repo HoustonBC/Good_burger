@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-    
-before_action :authorize_user
+  before_action :authorize_user
+
   def index
     @users = User.all
   end
-    
+
   def show
    @user = current_user
    @User.find(params[:id])
@@ -28,7 +28,8 @@ before_action :authorize_user
     if !user_signed_in? || !current_user.admin?
       raise ActionController::RoutingError.new("Not Found")
     end
-    
+  end
+
   def user_params
     params.require(:user).permit(:email, :avatar)
   end
