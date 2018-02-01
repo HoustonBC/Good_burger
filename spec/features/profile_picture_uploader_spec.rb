@@ -1,6 +1,6 @@
 require 'carrierwave/test/matchers'
 require 'rails_helper'
-describe AvatarUploader do
+xdescribe AvatarUploader do
   include CarrierWave::Test::Matchers
 
   let(:brendan) { FactoryBot.create(:user) }
