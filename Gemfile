@@ -7,7 +7,13 @@ end
 group :test do
   gem 'database_cleaner'
 end
+group :development, :test do
+  gem "dotenv-rails"
+end
+gem "mini_magick"
 
+gem 'carrierwave', '~> 1.0'
+gem "fog-aws"
 gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
