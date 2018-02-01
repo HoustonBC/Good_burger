@@ -5,10 +5,16 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @reviews = Review.where(restaurant_id: @restaurant.id)
-    @review_rating
+    @review_rating = 0
     @reviews.map { |review|
       @review_rating += review.rating
     }
+    @review_rating = @review_rating/@reviews.length
+    @review_price = 0
+    @reviews.map { |review|
+      @review_price += review.price
+    }
+    @review_price = @review_price/@reviews.length
     end
 
   def new
