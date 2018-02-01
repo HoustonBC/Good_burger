@@ -5,17 +5,18 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @reviews = Review.where(restaurant_id: @restaurant.id)
-    @review_rating = 0
-    @reviews.map { |review|
-      @review_rating += review.rating
-    }
-    @review_rating = @review_rating/@reviews.length
-    @review_price = 0
-    @reviews.map { |review|
-      @review_price += review.price
-    }
-    @review_price = @review_price/@reviews.length
-    end
+      @review_rating = 0
+      @reviews.map { |review|
+        @review_rating += review.rating
+      }
+      @review_rating = @review_rating/@reviews.length rescue 0
+
+      @review_price = 0
+      @reviews.map { |review|
+        @review_price += review.price
+      }
+      @review_price = @review_price/@reviews.length rescue 0
+  end
 
   def new
     @user = current_user
@@ -45,5 +46,19 @@ class RestaurantsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :encrypted_password)
+  end
+
+  def review_ratings(reviews)
+    @review_rating = 0
+    @reviews.map { |review|
+      @review_rating += review.rating
+    }
+    @review_rating = @review_rating/@reviews.length
+
+    @review_price = 0
+    @reviews.map { |review|
+      @review_price += review.price
+    }
+    @review_price = @review_price/@reviews.length
   end
 end
