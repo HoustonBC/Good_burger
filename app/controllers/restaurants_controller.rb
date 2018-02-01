@@ -1,10 +1,23 @@
 class RestaurantsController < ApplicationController
+  before_action :authorize_user, except: [:index, :show]
+
   def index
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
     @reviews = Review.where(restaurant_id: @restaurant.id)
+      @review_rating = 0
+      @reviews.map { |review|
+        @review_rating += review.rating
+      }
+      @review_rating = @review_rating/@reviews.length rescue 0
+
+      @review_price = 0
+      @reviews.map { |review|
+        @review_price += review.price
+      }
+      @review_price = @review_price/@reviews.length rescue 0
   end
 
   def new
@@ -17,6 +30,9 @@ class RestaurantsController < ApplicationController
     # @user = current_user
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
+
+
+
     if @restaurant.save
       redirect_to restaurant_path(@restaurant.id)
       flash[:notice] = 'Restaurant added successfully'
@@ -26,7 +42,28 @@ class RestaurantsController < ApplicationController
     end
 
   end
-  private
+
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def update
+    @restaurant = Restaurant.find(params[:id])
+
+    if @restaurant.update(restaurant_params)
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy
+    redirect_to root_path
+  end
+
+  protected
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :picture, :address, :city, :state, :zip, :description)
@@ -36,4 +73,11 @@ class RestaurantsController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :encrypted_password)
   end
+
+  def authorize_user
+    if !user_signed_in?
+      raise ActionController::RoutingError.new("Not Found")
+    end
+  end
+
 end

@@ -1,0 +1,9 @@
+<p>index of users</p>
+
+<% @users.each do |user| %>
+  <li>
+    <%= link_to user.email, user %>
+    <p>Email: <%= user.email %></p>
+    <p>Type: <%= user.role %> </p>
+  </li>
+<% end %>

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature "visitor can add restaurants" do
   let(:brendan) { FactoryBot.create(:user) }
+
   before(:each) do
     sign_in(brendan)
   end

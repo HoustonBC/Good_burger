@@ -1,3 +1,4 @@
+
 <h1>Your Page</h1>
 
 <p id="notice"><%= notice %></p>
@@ -19,3 +20,8 @@
     <%end%>
   </div>
 <% end %>
+
+<p>user show page</p>
+<p>Email: <%= @user.email %></p>
+<p>Type: <%= @user.role %>
+<button> <%= link_to "Delete User", users_path, method: :delete, data: {confirm: 'Are your sure?'} %> </button>

@@ -9,5 +9,9 @@ RSpec.describe Review, type: :model do
   it { should allow_value(1).for(:rating) }
   it { should_not allow_value(nil).for(:rating) }
 
+  it { should allow_value(3).for(:rating) }
+  it { should_not allow_value(nil).for(:rating) }
+
   it { should allow_value("hello").for(:body) }
+
 end
