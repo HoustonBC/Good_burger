@@ -6,8 +6,30 @@ class RestaurantsIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurant: []
+      restaurants: [],
+      searchText: '',
+      searchResults: []
     }
+    this.searchTextChange = this.searchTextChange.bind(this)
+    this.formSubmit = this.formSubmit.bind(this)
+  }
+
+  searchTextChange(event) {
+    this.setState({searchText: event.target.value});
+  }
+
+  formSubmit(event) {
+    event.preventDefault()
+    this.setState({searchResults: []})
+    let previousSearch = [];
+    let resultsOfSearch = [];
+    this.state.restaurants.map(restaurant => {
+      if (restaurant.name.startsWith(this.state.searchText)){
+        previousSearch = resultsOfSearch
+        resultsOfSearch = previousSearch.concat(restaurant)
+      }
+    })
+    this.setState({searchResults: resultsOfSearch})
   }
 
   componentDidMount() {
@@ -15,24 +37,20 @@ class RestaurantsIndexContainer extends Component {
     .then(response => response.json())
     .then(body => {
       let jsonRestaurants = body
-      this.setState({ restaurant: jsonRestaurants })
+      this.setState({ restaurants: jsonRestaurants })
     })
   }
 
-  // addNewRestaurant(formPayload) {
-  //   fetch('/api/restaurant', {
-  //     method: 'POST',
-  //     body: JSON.stringify(formPayload)
-  //   })
-  //   .then(response => response.json())
-  //   .then(responseData => {
-  //     this.setState({ restaurant: [...this.state.restaurant, responseData] })
-  //   })
-  // }
 
 
   render() {
-    let restaurant = this.state.restaurant.map(restaurant => {
+    let searchBy;
+    if (this.state.searchResults.length == 0){
+      searchBy = this.state.restaurants
+    }else {
+      searchBy = this.state.searchResults
+    }
+    let searchResults = searchBy.map(restaurant => {
       return(
         <RestaurantTile
           key={restaurant.id}
@@ -48,11 +66,26 @@ class RestaurantsIndexContainer extends Component {
       )
     })
 
+    let searchBar = (
+          <form onSubmit={this.formSubmit}>
+            <label> Search Restaurants
+              <input
+                name="searchText"
+                type="text"
+                value={this.state.searchText}
+                onChange={this.searchTextChange}
+              />
+            </label>
+            <input className="button" type="submit" value="Submit"/>
+          </form>
+        )
+
     return(
       <div className="row">
         <div className="small-8 small-centered columns">
           <a href="/restaurants/new"> Add New Restaurant </a>
-          <h1>{restaurant}</h1>
+          <div>{searchBar}</div>
+          <h1>{searchResults}</h1>
         </div>
       </div>
     )
