@@ -18,23 +18,15 @@
 
 <p> <%= @restaurant.description %></p>
 
+  <span> Average Rating: <%= @review_rating %></span>
+  <span> Average Price: <%= @review_price %></span>
+  <p> <%= @restaurant.description %></p>
 <% if user_signed_in? %>
   <%= link_to "Add Review", new_restaurant_review_path(@restaurant), class: 'button' %>
 <% end %>
 
-  <span> Average Rating: <%= @review_rating %></span>
-  <span> Average Price: <%= @review_price %></span>
-  <p> <%= @restaurant.description %></p>
-<button> <%= link_to "Add Review", new_restaurant_review_path(@restaurant) %> </button>
-
 
 <h2> Reviews for <%= @restaurant.name %> </h2>
-
-<% if current_user != nil %>
-  <% if current_user.admin? %>
-    <p>user is admin</p>
-  <% end %>
-<% end %>
 
 <ul>
   <% @reviews.each do |review| %>
