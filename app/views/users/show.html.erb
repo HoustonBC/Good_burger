@@ -1,3 +1,26 @@
+
+<h1>Your Page</h1>
+
+<p id="notice"><%= notice %></p>
+
+  <%= form_for @user, html: { multipart: true } do |f| %>
+  <p>
+    <label>Your Profile Pic</label>
+    <%if current_user.avatar.present? %>
+    <%= image_tag(@user.avatar) %>
+    <%end %>
+    <%= f.file_field :avatar %>
+  </p>
+
+  <div class="actions">
+    <% if current_user.avatar.present? %>
+    <%= f.submit "Change Picture" %>
+    <% else %>
+    <%= f.submit "Add Picture" %>
+    <%end%>
+  </div>
+<% end %>
+
 <p>user show page</p>
 <p>Email: <%= @user.email %></p>
 <p>Type: <%= @user.role %>
