@@ -22,6 +22,12 @@
   <%= link_to "Add Review", new_restaurant_review_path(@restaurant), class: 'button' %>
 <% end %>
 
+  <span> Average Rating: <%= @review_rating %></span>
+  <span> Average Price: <%= @review_price %></span>
+  <p> <%= @restaurant.description %></p>
+<button> <%= link_to "Add Review", new_restaurant_review_path(@restaurant) %> </button>
+
+
 <h2> Reviews for <%= @restaurant.name %> </h2>
 
 <% if current_user != nil %>
@@ -35,9 +41,9 @@
   <% if current_user != nil %>
     
     <li><h3> <%= review.title  %> </h3>
-    <span><%= review.rating %></span>
-    <span><%= review.vote_score %></span>
-    <span><%= review.price %></span>
+    <span> Rating: <%= review.rating %></span>
+    <span> Vote: <%= review.vote_score %></span>
+    <span> Price: <%= review.price %></span>
     <p> <%= review.body %> </p></li>
     <% if current_user.admin? %>
 
