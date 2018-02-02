@@ -22,6 +22,11 @@
 
     <section class="top-bar-section">
       <ul class="right">
+        <% if current_user.admin? %>
+          <%= link_to "Edit Users", users_path, class: 'button'  %>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'Your Profile', edit_user_registration_path %></li>
+          <li><%= image_tag(current_user.avatar.thumb)  %> </li>
         <%- if current_user -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <li><%= link_to 'Your Profile', edit_user_registration_path %></li>
