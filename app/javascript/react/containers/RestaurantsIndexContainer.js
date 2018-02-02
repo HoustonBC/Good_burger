@@ -74,7 +74,7 @@ class RestaurantsIndexContainer extends Component {
                 type="text"
                 value={this.state.searchText}
                 onChange={this.searchTextChange}
-                placeholder="Case Sensative"
+                placeholder="Case Sensitive"
               />
             </label>
             <input className="button" type="submit" value="Submit"/>
