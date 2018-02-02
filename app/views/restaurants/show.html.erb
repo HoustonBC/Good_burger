@@ -1,48 +1,93 @@
-<%= link_to "Back", restaurants_path, class: 'button'  %>
-<h1> <%= @restaurant.name %> </h1>
-<div> <img src=<%= @restaurant.picture %> alt=<%= @restaurant.name %>>  </div>
-
-<div>
-  <span> <%= @restaurant.address %> </span>
-  <span> <%= @restaurant.city %></span>
-  <span> <%= @restaurant.state %></span>
-  <span> <%= @restaurant.zip %></span>
+<div >
+  <%= link_to "Back", restaurants_path, class: 'button'  %>
 </div>
 
-<% if current_user != nil %>
-  <% if current_user.admin? %>
-    <%= link_to "Delete Restaurant", restaurant_path(@restaurant.id), class: 'button', method: :delete, data: {confirm: 'Are your sure?'} %>
-    <%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant.id), class: 'button' %>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="text-center padder tile">
+    <h1> <%= @restaurant.name %> </h1>
+  </div>
+</div>
 
-<p> <%= @restaurant.description %></p>
+<% #PICTURE %>
+<div class="row">
+  <div class="text-center padder restauranttile">
+    <img class="restaurantimg" src=<%= @restaurant.picture %> alt=<%= @restaurant.name %>>
 
-  <span> Average Rating: <%= @review_rating %></span>
-  <span> Average Price: <%= @review_price %></span>
-  <p> <%= @restaurant.description %></p>
-<% if user_signed_in? %>
-  <%= link_to "Add Review", new_restaurant_review_path(@restaurant), class: 'button' %>
-<% end %>
+    <div class="restaurantfont">
+      <div><span> <%= @restaurant.address %> </span></div>
+      <p> <%= @restaurant.city %> <%= @restaurant.state %> <%= @restaurant.zip %></p>
+    </div>
 
-
-<h2> Reviews for <%= @restaurant.name %> </h2>
-
-<ul>
-  <% @reviews.each do |review| %>
-  <% if current_user != nil %>
-    
-    <li><h3> <%= review.title  %> </h3>
-    <span> Rating: <%= review.rating %></span>
-    <span> Vote: <%= review.vote_score %></span>
-    <span> Price: <%= review.price %></span>
-    <p> <%= review.body %> </p></li>
-    <% if current_user.admin? %>
-
-      <p>Admin Buttons</p>
-      <%= link_to "Edit Review", edit_restaurant_review_path(@restaurant, review), class: 'button'  %>
-      <%= link_to "Delete Review", restaurant_review_path(@restaurant, review), class: 'button', method: :delete, data: {confirm: 'Are your sure?'} %>
+    <% if current_user != nil %>
+      <% if current_user.admin? %>
+        <%= link_to "Delete Restaurant", restaurant_path(@restaurant.id), class: 'button', method: :delete, data: {confirm: 'Are your sure?'} %>
+        <%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant.id), class: 'button' %>
       <% end %>
     <% end %>
-  <% end %>
-</ul>
+
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="text-center tile padder ">
+    <p> <%= @restaurant.description %></p>
+
+    <div> Average Rating:</div>
+    <% for i in 1..@review_rating %>
+      <span><i class="far fa-thumbs-up"></i></span>
+    <% end %>
+    <div> Average Price:</div>
+    <% for i in 1..@review_price %>
+      <span><i class="fas fa-dollar-sign"></i></span>
+    <% end %>
+    <p> <%= @restaurant.description %></p>
+    <% if user_signed_in? %>
+      <%= link_to "Add Review", new_restaurant_review_path(@restaurant), class: 'button' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="text-center tile padder">
+    <h2> Reviews for <%= @restaurant.name %> </h2>
+  </div>
+</div>
+
+
+
+    <ul>
+      <% @reviews.each do |review| %>
+        <div class="row">
+          <div class="text-center reviewtile padder">
+          <div class="reviewtitle"><h3> <%= review.title  %> </h3>
+            <p class="floatright"> <%= review.body %> </p>
+          </div>
+
+          <div class="reviewinfo">
+            <p> Rating: </p>
+            <% for i in 1..review.rating %>
+              <span><i class="far fa-thumbs-up"></i></span>
+            <% end %>
+            <p> Price:</p>
+            <% for i in 1..review.price %>
+              <span><i class="fas fa-dollar-sign"></i></span>
+            <% end %>
+          </div>
+
+          <% if current_user != nil %>
+            <% if current_user.admin? %>
+
+              <div class="reviewinfo">
+              <p>Admin Buttons</p>
+              <%= link_to "Edit Review", edit_restaurant_review_path(@restaurant, review), class: 'button'  %>
+              <%= link_to "Delete Review", restaurant_review_path(@restaurant, review), class: 'button', method: :delete, data: {confirm: 'Are your sure?'} %>
+              </div>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </ul>

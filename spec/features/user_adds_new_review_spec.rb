@@ -25,7 +25,6 @@ feature "user adds reviews for restaurants" do
 
     expect(page).to have_content "Review added successfully"
     expect(page).to have_content r1.name
-    expect(page).to have_content 1
     expect(page).to have_content "man do i hate this place"
   end
 

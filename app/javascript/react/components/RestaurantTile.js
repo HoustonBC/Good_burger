@@ -6,6 +6,7 @@ const RestaurantTile = (props) => {
     <a href={restaurantLink}>
       <div className="restaurant-tile">
         <h2> {props.name} </h2>
+        <img src={props.picture} alt="burger image"  className='rimage' height="200px" width="125px"/>
         <span> {props.address} </span>
         <span> {props.city} </span>
         <span> {props.state} </span>

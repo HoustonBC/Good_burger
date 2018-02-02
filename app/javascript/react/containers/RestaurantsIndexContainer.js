@@ -67,13 +67,14 @@ class RestaurantsIndexContainer extends Component {
     })
 
     let searchBar = (
-          <form onSubmit={this.formSubmit}>
+          <form onSubmit={this.formSubmit} className='search'>
             <label> Search Restaurants
               <input
                 name="searchText"
                 type="text"
                 value={this.state.searchText}
                 onChange={this.searchTextChange}
+                placeholder="Case Sensative"
               />
             </label>
             <input className="button" type="submit" value="Submit"/>
@@ -82,10 +83,11 @@ class RestaurantsIndexContainer extends Component {
 
     return(
       <div className="row">
-        <div className="small-8 small-centered columns">
-          <a href="/restaurants/new"> Add New Restaurant </a>
+        <div className="large- 12 small-12 small-centered columns">
+          <h2> Restaurants </h2>
           <div>{searchBar}</div>
           <h1>{searchResults}</h1>
+          <a className="rlink" href="/restaurants/new"> Add New Restaurant </a>
         </div>
       </div>
     )
